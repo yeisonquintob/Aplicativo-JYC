@@ -1,0 +1,51 @@
+USE MercanciasJyC;
+GO
+
+-- Insertar datos en la tabla Clientes
+INSERT INTO Clientes (Nombre, Direccion, Telefono, Email)
+VALUES 
+('Yeison Quinto', 'Calle 123 #45-67, Medellín', '3001234567', 'yeison.quinto@email.com'),
+('María Rodríguez', 'Carrera 78 #90-12, Bogotá', '3109876543', 'maria.rodriguez@email.com'),
+('Carlos Pérez', 'Avenida 56 #34-78, Cali', '3203456789', 'carlos.perez@email.com'),
+('Ana Gómez', 'Calle 90 #23-45, Barranquilla', '3507654321', 'ana.gomez@email.com');
+
+-- Insertar datos en la tabla Productos
+INSERT INTO Productos (Nombre, Descripcion, Precio, Stock)
+VALUES 
+('Laptop Pro', 'Laptop de alta gama para profesionales', 2500000, 50),
+('Smartphone X', 'Smartphone con cámara de última generación', 1800000, 100),
+('Tablet Y', 'Tablet ligera y potente', 900000, 75),
+('Auriculares Z', 'Auriculares inalámbricos con cancelación de ruido', 450000, 200);
+
+-- Insertar datos en la tabla Pedidos
+INSERT INTO Pedidos (ClienteID, FechaPedido, FechaEntregaProgramada, EstadoPedido)
+VALUES 
+(1, '2023-06-01 10:00:00', '2023-06-03', 'En proceso'),
+(2, '2023-06-02 11:30:00', '2023-06-04', 'En proceso'),
+(3, '2023-06-03 09:15:00', '2023-06-05', 'En proceso'),
+(1, '2023-06-04 14:45:00', '2023-06-06', 'En proceso');
+
+-- Insertar datos en la tabla DetallesPedido
+INSERT INTO DetallesPedido (PedidoID, ProductoID, Cantidad, PrecioUnitario)
+VALUES 
+(1, 1, 1, 2500000),
+(1, 4, 2, 450000),
+(2, 2, 1, 1800000),
+(3, 3, 1, 900000),
+(4, 2, 1, 1800000),
+(4, 4, 1, 450000);
+
+-- Insertar datos en la tabla Entregas
+INSERT INTO Entregas (PedidoID, FechaEntregaReal, EstadoEntrega)
+VALUES 
+(1, NULL, 'Programada'),
+(2, NULL, 'Programada'),
+(3, NULL, 'Programada'),
+(4, NULL, 'Programada');
+
+-- Mostrar los datos insertados
+SELECT * FROM Clientes;
+SELECT * FROM Productos;
+SELECT * FROM Pedidos;
+SELECT * FROM DetallesPedido;
+SELECT * FROM Entregas;

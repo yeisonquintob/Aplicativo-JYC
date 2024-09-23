@@ -1,0 +1,20 @@
+body {
+    background-color: #f8f9fa; /* Fondo blanco */
+    color: #343a40; /* Texto gris oscuro */
+  }
+  
+  .navbar {
+    background-color: #007bff; /* Azul para la barra de navegación */
+  }
+  
+  .btn-primary {
+    background-color: #007bff; /* Botones principales en azul */
+    border-color: #007bff;
+  }
+  
+  footer {
+    background-color: #6c757d; /* Gris para el footer */
+    color: white;
+    padding: 10px 0;
+  }
+  

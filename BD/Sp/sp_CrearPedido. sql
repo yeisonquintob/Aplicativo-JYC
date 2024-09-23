@@ -1,0 +1,37 @@
+USE [MercanciasJyC]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_CrearPedido]    Script Date: 22/09/2024 7:58:00 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Procedimiento para crear un nuevo pedido
+ALTER PROCEDURE [dbo].[sp_CrearPedido]
+    @ClienteID INT,
+    @FechaPedido DATETIME,
+    @FechaEntregaProgramada DATE,
+    @PedidoID INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        EXEC sp_ValidarFechaEntrega @FechaPedido, @FechaEntregaProgramada;
+
+        INSERT INTO Pedidos (ClienteID, FechaPedido, FechaEntregaProgramada, EstadoPedido)
+        VALUES (@ClienteID, @FechaPedido, @FechaEntregaProgramada, 'Pendiente');
+
+        SET @PedidoID = SCOPE_IDENTITY();
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        
+        THROW;
+    END CATCH
+END
